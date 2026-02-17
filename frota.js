@@ -1,3 +1,4 @@
+window.onload = function() {
 // Função para Cadastrar Ônibus
 const formFrota = document.getElementById('formFrota');
 
@@ -50,3 +51,4 @@ function listarFrota() {
 
 // Inicia a listagem ao carregar a página
 listarFrota();
+};
