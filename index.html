@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Garagem - Gestão de Frota</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.x.x/firebase-auth-compat.js"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <nav class="bg-blue-800 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">Garagem Control v1.0</h1>
+            <div id="nav-links" class="space-x-4">
+                <a href="#" class="hover:underline">Dashboard</a>
+                <a href="#frota" class="hover:underline">Frota</a>
+                <button id="btnLogout" class="bg-red-500 px-3 py-1 rounded text-sm">Sair</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mx-auto mt-8 p-4">
+        <section id="modulo-frota" class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-gray-700">Cadastro de Veículo</h2>
+            <form id="formFrota" class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <input type="text" id="prefixo" placeholder="Prefixo (ID)" class="border p-2 rounded" required>
+                <input type="text" id="placa" placeholder="Placa" class="border p-2 rounded" required>
+                <select id="modelo" class="border p-2 rounded">
+                    <option value="DD">DD (Double Decker)</option>
+                    <option value="LD">LD (Low Driver)</option>
+                    <option value="Toco">Toco</option>
+                    <option value="Convencional">Convencional</option>
+                </select>
+                <input type="text" id="motorizacao" placeholder="Motorização" class="border p-2 rounded">
+                <button type="submit" class="bg-green-600 text-white p-2 rounded hover:bg-green-700 transition">Cadastrar Ônibus</button>
+            </form>
+        </section>
+
+        <section class="bg-white p-6 rounded-lg shadow-md">
+            <h2 class="text-xl font-semibold mb-4 text-gray-700">Frota Cadastrada (~50 veículos)</h2>
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="p-2 border">Prefixo</th>
+                            <th class="p-2 border">Placa</th>
+                            <th class="p-2 border">Modelo</th>
+                            <th class="p-2 border">Status Atual</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tabelaFrota">
+                        </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+
+    <script src="firebase-config.js"></script>
+    <script src="frota.js"></script>
+</body>
+</html>
