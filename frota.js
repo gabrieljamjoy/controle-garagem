@@ -1,4 +1,37 @@
 window.onload = function() {
+    
+    // Monitor de Autenticação (Troca de telas)
+    auth.onAuthStateChanged(user => {
+        const loginScreen = document.getElementById('login-screen');
+        const mainContent = document.getElementById('main-content');
+        
+        if (user) {
+            if(loginScreen) loginScreen.classList.add('hidden');
+            if(mainContent) mainContent.classList.remove('hidden');
+            carregarFrota();
+        } else {
+            if(loginScreen) loginScreen.classList.remove('hidden');
+            if(mainContent) mainContent.classList.add('hidden');
+        }
+    });
+};
+
+// Função de Login (fora do window.onload para o HTML encontrar)
+function login() {
+    const email = document.getElementById('email').value;
+    const senha = document.getElementById('password').value;
+    
+    if(!email || !senha) return alert("Preencha todos os campos!");
+
+    auth.signInWithEmailAndPassword(email, senha)
+        .then(() => console.log("Logado!"))
+        .catch(err => alert("Erro ao logar: " + err.message));
+}
+
+function logout() {
+    auth.signOut();
+}
+window.onload = function() {
 // Função para Cadastrar Ônibus
 const formFrota = document.getElementById('formFrota');
 
