@@ -8,5 +8,5 @@ const firebaseConfig = {
 };
 // ESSAS LINHAS ABAIXO SÃO OBRIGATÓRIAS:
 firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
 const auth = firebase.auth();
+const db = firebase.firestore();
